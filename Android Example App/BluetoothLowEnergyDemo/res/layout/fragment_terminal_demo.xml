@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    
+    
+    
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/data_label"
+       	android:textSize="20sp" />
+    
+    <TextView
+        android:id="@+id/receive_text_id"
+        style="@android:style/Widget.EditText"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top|left" />
+		
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+		<TextView
+			android:layout_width="55sp"
+			android:layout_height="wrap_content"
+	        android:gravity="top|left"
+			android:text="@string/string_label"
+        	android:textSize="20sp" />
+		
+	    <EditText
+	        android:id="@+id/string_send_text_id"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:inputType="textMultiLine"
+	        android:minLines="2"
+	        android:maxLines="6"
+	        android:gravity="top|left"
+	        android:hint="@string/string_send_hint" 
+        	android:layout_marginBottom="5dp" />
+	    
+	    
+	    <Button
+	        android:id="@+id/string_send_button_id"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/send_button_text" />
+	</LinearLayout>
+	
+	
+		
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+		<TextView
+			android:layout_width="55sp"
+			android:layout_height="wrap_content"
+			android:text="@string/hex_label"
+        	android:textSize="20sp" />
+		
+	    <EditText
+	        android:id="@+id/hex_send_text_id"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/hex_send_hint" />
+	    
+	    <Button
+	        android:id="@+id/hex_send_button_id"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/send_button_text" />
+	</LinearLayout>
+       
+    
+
+</LinearLayout>

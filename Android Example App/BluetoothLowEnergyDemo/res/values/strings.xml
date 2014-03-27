@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BLE Booster Demo</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_bluetooth">Connect Device</string>
+    <string name="hello_world">Hello world!</string>
+    <string-array name="demo_titles_array">
+        <item >Home</item>
+        <item >LED and Button Demo</item>
+        <item >Device Information</item>
+        <item >Terminal Demo</item>
+    </string-array>
+    
+    <!-- Used for accessibility options -->
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    
+    <!-- Strings for home fragment -->
+    <string name="home_text">Welcome to the BLE Booster Demo!</string>
+    
+    <!-- Strings for Button and LED Demo -->
+    <string name="clear_button">Clear</string>
+    <string name="button_count_default">0</string>
+    <string name="button_count_label">Times Pressed</string>
+    <string name="toggle_button">Toggle</string>
+    
+    <!-- Strings for the Terminal Demo -->
+    <string name="data_label">Data</string>
+    <string name="string_label">String</string>
+    <string name="hex_label">Hex</string>
+    <string name="string_send_hint">Hello World!</string>
+    <string name="hex_send_hint">0x00 0x01 0x02 0xFF</string>
+    <string name="send_button_text">Send</string>
+    
+    <!--  Strings for Device Information -->
+    <string name="VCC_label">VCC</string>
+    <string name="VCC_value_default">0.0V</string>
+    <string name="V_battery_label">Battery Voltage</string>
+    <string name="V_battery_value_default">0.0V</string>
+    <string name="temperature_label">Temperature</string>
+    <string name="temperature_value_default">0°F</string>
+    <string name="update_button_text">Update</string>
+    
+    <!-- Strings for Device Scan Activity -->
+    <string name="title_devices">BLE Device Scan</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
+    <string name="unknown_device">Unknown device</string>
+    <string-array name="device_spinner_array">
+        <item>MSP430G2553</item>
+        <item>MSP430F5529</item>
+    </string-array>
+
+</resources>

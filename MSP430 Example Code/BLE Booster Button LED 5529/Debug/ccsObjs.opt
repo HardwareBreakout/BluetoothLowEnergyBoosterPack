@@ -1,0 +1,1 @@
+"./printf.obj" "./main.obj" -l"libc.a" "../lnk_msp430f5529.cmd" 

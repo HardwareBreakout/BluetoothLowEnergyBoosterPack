@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:gravity="right"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+       	android:layout_marginBottom="15dp" >
+    	
+		<TextView
+			android:layout_width="55sp"
+			android:layout_height="wrap_content"
+	        android:gravity="top|left"
+			android:text="@string/VCC_label"
+        	android:textSize="20sp" />
+				    
+	    <EditText
+	        android:id="@+id/VCC_value_id"
+	        android:inputType="number" 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/VCC_value_default"
+	        android:cursorVisible="false" />
+		
+	    <Button
+	        android:id="@+id/update_VCC_button_id"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/update_button_text" />
+	</LinearLayout>
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:gravity="right"
+        android:layout_marginRight="20dp"
+       	android:layout_marginBottom="15dp" >
+    	
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+	        android:gravity="top|left"
+			android:text="@string/V_battery_label"
+        	android:textSize="20sp" />
+	    <EditText
+	        android:id="@+id/V_battery_value_id"
+	        android:inputType="number" 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/V_battery_value_default"
+	        android:cursorVisible="false" />
+		
+	    <Button
+	        android:id="@+id/update_V_battery_button_id"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/update_button_text" />
+	</LinearLayout>
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:gravity="right"
+        android:layout_marginRight="20dp"
+       	android:layout_marginBottom="15dp" >
+    	
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+	        android:gravity="top|left"
+			android:text="@string/temperature_label"
+        	android:textSize="20sp" />
+	    <EditText
+	        android:id="@+id/temperature_value_id"
+	        android:inputType="number" 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/temperature_value_default"
+	        android:cursorVisible="false" />
+		
+	    <Button
+	        android:id="@+id/update_temperature_button_id"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/update_button_text" />
+	</LinearLayout>
+	
+	<Spinner
+	    android:id="@+id/device_spinner_id"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" />
+</LinearLayout>
