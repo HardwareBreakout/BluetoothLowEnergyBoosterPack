@@ -1,0 +1,94 @@
+dim result
+
+# endpoint data in
+dim in(20) 
+dim in_len
+
+# endpoint data out
+dim out(20) 
+dim out_len
+
+dim dataLen2
+dim data(2)
+
+# Is the device connected
+dim connected
+
+# Boot event listener (gets executed when the device is powered)
+event system_boot(major, minor, patch, build, ll_version, protocol_version, hw)
+    connected = 0															# Device is not connected
+	call system_endpoint_set_watermarks(5, 0, 0) 							# Disable watermarks
+	call gap_set_adv_parameters(32, 48, 7)									# Set advertisement parameters 20 to 30 ms and all channels
+    call gap_set_mode(gap_general_discoverable, gap_undirected_connectable)	# Start advertisement
+end
+
+# Connection event listener
+event connection_status(connection, flags, address, address_type, conn_interval, timeout, latency, bonding)
+	connected = 1		# Device is connected
+end
+
+# Disconnection event listener
+event connection_disconnected(connection, reason)
+	connected = 0															# Device is not connected
+	call system_endpoint_set_watermarks(5, 0, 0) 							# disable watermarks
+	call gap_set_adv_parameters(32, 48, 7)									# Set advertisement parameters 20 to 30 ms and all channels	
+    call gap_set_mode(gap_general_discoverable, gap_undirected_connectable)	# Start advertisement
+end
+
+# Attributes value event listener
+# Executed when a remote device writes data to a local attribute
+event attributes_value(connection, reason, handle, offset, value_len, value_data)
+    if handle = xgatt_data then												# Check if data written to CR data attribute
+        out(0:value_len) = value_data(0:value_len)
+        out_len = value_len
+        call system_endpoint_set_watermarks(5, $ff, out_len) 				# Set TX watermark to the length of the written attribute
+    end if
+end
+
+# Sytem endpoint watermark TX event listener
+event system_endpoint_watermark_tx(endpoint, size)
+    if endpoint = 5 then
+        call system_endpoint_set_watermarks(5, $ff, 0) 						# Disable TX watermark
+        call system_endpoint_tx(5, out_len, out(0:out_len))					# Write data to UART
+        call attributes_user_write_response(0, 0) 							# Respond to connection handle 0 (only single connection supported)
+        out_len = 0
+    end if
+end
+
+# Attribute status event listener
+# Event occurs if attribute's Client Characteristic Configuration value changes.
+event attributes_status(handle, flags)
+    if handle = xgatt_data then
+        if flags & 2 then
+            call system_endpoint_set_watermarks(5, 1, $ff) 					# Indications are enabled -> set RX watermark to 1 byte
+        else
+            call system_endpoint_set_watermarks(5, 0, $ff) 					# Indications are NOT enabled -> disable RX watermark
+        end if
+    end if
+end
+
+# System endpoint watermark event listener
+# Generated when there is data available from UART
+event system_endpoint_watermark_rx(endpoint, size)
+    if endpoint = 5 then
+        in_len = size
+        if in_len > 20 then
+            in_len = 20
+        end if
+		
+        call system_endpoint_set_watermarks(5, 0, $ff) 						# disable RX watermark
+        call system_endpoint_rx(5, in_len)(result, in_len, in(0:in_len))	# read data from UART
+        call attributes_write(xgatt_data, 0, in_len, in(0:in_len))			# Write data to GATT
+    end if
+end
+
+
+
+# Attribute client indicated event listener
+event attclient_indicated(connection, attrhandle)
+    if attrhandle = xgatt_data then											# Cable replacement data value is indicated
+        call system_endpoint_set_watermarks(5, 1, $ff) 						# set RX watermark to 1 byte
+        in_len = 0
+    end if
+end
+
