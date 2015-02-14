@@ -14,7 +14,7 @@ class Device:
 		self.RSSI = RSSI
 		self.address = address
 		self.address_type = address_type
-		self.name = []
+		self.name = ""
 	def __str__(self):
 		return "Name: " + self.name + "\tAddress: " + self.address.tostring() + "\tRSSI: " + str(self.RSSI)
 
